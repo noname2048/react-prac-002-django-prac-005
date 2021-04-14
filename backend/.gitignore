@@ -12,6 +12,11 @@ backend/media
 
 # DB
 db.sqlite3
+migrations
 
 # coverage
 .coverage
+
+# static media
+/static
+/media
