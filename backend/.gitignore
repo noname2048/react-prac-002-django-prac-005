@@ -1,0 +1,17 @@
+# python
+.env
+.python-version
+__pycache__/
+backend/static
+backend/media
+
+# IDE
+.vscode
+.idea
+.ipynb_checkpoints
+
+# DB
+db.sqlite3
+
+# coverage
+.coverage
