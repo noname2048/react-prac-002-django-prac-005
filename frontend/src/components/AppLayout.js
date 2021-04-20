@@ -11,6 +11,8 @@ function AppLayout({ children }) {
       <div className="header">
         <h1 className="page-title">
           <img src={LogoImage} alt="logo" srcSet="" />
+          <a href="/accounts/signup">회원가입</a>
+          <a href="/accounts/login">로그인</a>
         </h1>
         <div className="search">
           <Input.Search placeholder="검색" />

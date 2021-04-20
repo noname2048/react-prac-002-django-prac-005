@@ -1,8 +1,12 @@
-import { createContext, useEffect, useContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
-const SET_TOKEN = "MYSTORE/SET_TOKEN";
-const DELETE_TOKEN = "MYSTORE/DELETE_TOKEN";
+export const SET_TOKEN = "MYSTORE/SET_TOKEN";
+export const DELETE_TOKEN = "MYSTORE/DELETE_TOKEN";
+const TOKEN_KEY_NAME = "userJwtToken";
+
 function reducer(prevState, action) {
+  console.log("스토어 리듀서");
+
   switch (action.type) {
     case SET_TOKEN: {
       return {
@@ -28,7 +32,7 @@ export function MyStoreProvider({ children }) {
   let initValueJwtToken = "";
 
   try {
-    initValueJwtToken = window.localStorage.getItem("jwtToken");
+    initValueJwtToken = window.localStorage.getItem(TOKEN_KEY_NAME);
   } catch {
     initValueJwtToken = "";
   }
@@ -41,16 +45,25 @@ export function MyStoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialValues);
 
   useEffect(() => {
+    console.log("초기 데이터", initialValues);
+  }, []);
+
+  useEffect(() => {
+    console.log("유즈 이펙트");
+
     try {
+      console.log("단계 H");
       const { jwtToken } = state;
-      window.localStorage.setItem("jwtToken", jwtToken);
+
+      console.log("jwtToken", jwtToken);
+      window.localStorage.setItem(TOKEN_KEY_NAME, JSON.stringify(jwtToken));
     } catch (error) {
       console.log(error);
     }
   }, [state]);
 
   return (
-    <MyStoreContext.Provider value={dispatch}>
+    <MyStoreContext.Provider value={{ dispatch }}>
       {children}
     </MyStoreContext.Provider>
   );
