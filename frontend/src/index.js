@@ -5,13 +5,16 @@ import { AppProvider } from "store";
 import Root from "pages/Index";
 import "antd/dist/antd.css";
 import "./index.css";
+import { MyStoreProvider } from "myStore";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   // <React.StrictMode>
   <BrowserRouter>
     <AppProvider>
-      <Root />
+      <MyStoreProvider>
+        <Root />
+      </MyStoreProvider>
     </AppProvider>
   </BrowserRouter>,
   // </React.StrictMode>,
