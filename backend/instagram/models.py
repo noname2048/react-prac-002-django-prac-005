@@ -17,7 +17,7 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class Post(models.Model):
+class Post(TimeStampedModel):
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=MODEL_CASCADE,
