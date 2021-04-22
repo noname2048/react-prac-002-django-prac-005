@@ -4,11 +4,12 @@ import AppLayout from "components/AppLayout";
 import Home from "pages/Home";
 import About from "pages/About";
 import AccountsRoutes from "pages/accounts/Index";
+import LoginRequiredRoute from "utils/LoginRequiredRoute";
 
 function Root() {
   return (
     <AppLayout>
-      <Route exact path="/" component={Home} />
+      <LoginRequiredRoute exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <Route path="/accounts" component={AccountsRoutes} />
     </AppLayout>

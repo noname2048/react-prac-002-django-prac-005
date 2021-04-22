@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Input, Button, notification, Card } from "antd";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { FrownOutlined, SmileOutlined } from "@ant-design/icons";
 import useLocalStorage from "utils/useLocalStorage";
 import { useAppContext, setToken } from "store";
@@ -10,9 +10,16 @@ import { MyStoreContext, SET_TOKEN, DELETE_TOKEN } from "myStore";
 export default function Login() {
   const { dispatch } = useAppContext();
   const { dispatch: dispatch2 } = useContext(MyStoreContext);
+  const location = useLocation();
 
   const history = useHistory();
   const [fieldErrors, setFieldErrors] = useState({});
+
+  console.log("LOG: LOGIN/CONSTRUCT/LOCATION", location.state);
+  const { from: loginRedirectUrl } = location.state || {
+    from: { pathname: "/" },
+  };
+  console.log("LOG: LOGIN/REDIRCETURL", loginRedirectUrl.pathname);
 
   const onFinish = (values) => {
     async function fn() {
@@ -52,7 +59,9 @@ export default function Login() {
         });
 
         console.log("단계 E");
-        // history.push("/accounts/login"); // TODO: 이동 주소
+        history.push(loginRedirectUrl.pathname); // TODO: 이동 주소
+
+        console.log("이동좀");
       } catch (error) {
         if (error.response) {
           notification.open({
