@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { MyStoreContext } from "myStore";
 
 export default function LoginRequiredRoute({
-  componenet: Component,
+  component: Component,
   ...kwargs
 }) {
   const {
@@ -17,7 +17,7 @@ export default function LoginRequiredRoute({
       {...kwargs}
       render={(props) => {
         if (isAuthentiacted) {
-          return <Component {...props} />;
+          return <component {...props} />;
         } else {
           return (
             <Redirect
