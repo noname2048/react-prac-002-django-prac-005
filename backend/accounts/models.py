@@ -1,6 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from django.db import models
+from django.shortcuts import resolve_url
 
 
 class GenderChoices(models.TextChoices):
@@ -29,9 +30,11 @@ class User(AbstractUser):
 
     @property
     def name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}".strip()
 
     @property
     def avatar_url(self):
         if self.avatar:
-            return
+            return self.avatar.url
+        else:
+            return resolve_url("pydenticon_image", self.username)

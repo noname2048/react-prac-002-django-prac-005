@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.static import serve
+from django_pydenticon.views import image as pydenticon_image
 
 import debug_toolbar
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("instagram/", include("instagram.urls")),
     path("accounts/", include("accounts.urls")),
+    path("identicon/image/<path:data>.png", pydenticon_image, name="pydenticon_image"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

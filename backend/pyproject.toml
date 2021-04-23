@@ -13,6 +13,7 @@ Pillow = "^8.2.0"
 djangorestframework = "^3.12.4"
 django-cors-headers = "^3.7.0"
 djangorestframework-jwt = "^1.11.0"
+django-pydenticon = "^0.2"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^3.2"
