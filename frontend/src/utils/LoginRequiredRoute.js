@@ -17,7 +17,7 @@ export default function LoginRequiredRoute({
       {...kwargs}
       render={(props) => {
         if (isAuthentiacted) {
-          return <component {...props} />;
+          return <Component {...props} />;
         } else {
           return (
             <Redirect
