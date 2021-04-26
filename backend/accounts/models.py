@@ -25,7 +25,7 @@ class User(AbstractUser):
     bio = models.TextField(blank=True)
     website_url = models.URLField(blank=True)
 
-    # follew_set 유저가 팔로우 하는 사람들
+    # follow_set 유저가 팔로우 하는 사람들
     # follwer_set 유저를 팔로우 하는 사람들
     follow_set = models.ManyToManyField(
         "self", blank=True, symmetrical=False, related_name="follwer_set"
