@@ -27,8 +27,8 @@ class User(AbstractUser):
 
     # follow_set 유저가 팔로우 하는 사람들
     # follwer_set 유저를 팔로우 하는 사람들
-    follow_set = models.ManyToManyField(
-        "self", blank=True, symmetrical=False, related_name="follwer_set"
+    following_set = models.ManyToManyField(
+        "self", blank=True, symmetrical=False, related_name="follower_set"
     )
 
     @property
