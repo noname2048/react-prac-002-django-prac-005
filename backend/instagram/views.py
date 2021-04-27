@@ -10,16 +10,24 @@ from instagram.serializers import PostSerializer
 
 
 class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = (
+        Post.objects.all()
+        .select_related("user")
+        .prefetch_related("tag_set", "like_user_set")
+    )
     serializer_class = PostSerializer
     # permission_classes = [AllowAny]  # FIXME: 인증 적용
 
     def get_queryset(self):
-        timesince = timezone.now() - timedelta(days=3)
+
         qs = super().get_queryset()
+
+        # timesince = timezone.now() - timedelta(days=3)
+        # qs = qs.filter(created_at__gte=timesince)
+
         qs = qs.filter(
             Q(user=self.request.user)
             | Q(user__in=self.request.user.following_set.all())
         )
-        qs = qs.filter(created_at__gte=timesince)
+
         return qs
