@@ -146,7 +146,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-INTERNAL_IPS = ["localhost"]
+INTERNAL_IPS = ["127.0.0.1"]
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
