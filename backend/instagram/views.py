@@ -49,7 +49,7 @@ class PostViewSet(ModelViewSet):
     @action(detail=True, methods=["POST"])
     def like(self, request, pk):
         post = self.get_object()
-        post.like_user_set_add(self.request.user)
+        post.like_user_set.add(self.request.user)
         return Response(status.HTTP_201_CREATED)
 
     @like.mapping.delete
