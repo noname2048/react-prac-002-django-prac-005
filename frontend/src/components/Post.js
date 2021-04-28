@@ -1,11 +1,16 @@
-import { Avatar, Card } from "antd";
+import { Avatar, Card, Comment, Tooltip } from "antd";
 import { HeartFilled, HeartOutlined, HeartTwoTone, UserOutlined } from "@ant-design/icons";
+import React, { useContext } from "react";
 
-import React from "react";
+import Axios from "axios";
+import CommentList from "./commentList";
+import { MyStoreContext } from "myStore";
+import moment from "moment";
+import useAxios from "axios-hooks";
 
 function Post({ post, handleLike }) {
   const { user, caption, location, photo, tag_set, is_like } = post;
-  const { username, name, avatar_url } = user;
+  const { username, avatar_url } = user;
 
   return (
     <div>
@@ -34,7 +39,10 @@ function Post({ post, handleLike }) {
           avatar={<Avatar size="large" icon={<img srcSet={"http://localhost:8000" + avatar_url} alt={username} />} />}
           title={location}
           description={caption}
+          style={{ marginBottom: "0.5em" }}
         />
+        <h2>Comment List</h2>
+        <CommentList post={post} />
       </Card>
       {/* <img src={photo} alt={caption} style={{ width: "100px" }} />
       {location} {photo} */}
