@@ -36,7 +36,7 @@ function Post({ post, handleLike }) {
         ]}
       >
         <Card.Meta
-          avatar={<Avatar size="large" icon={<img srcSet={"http://localhost:8000" + avatar_url} alt={username} />} />}
+          avatar={<Avatar size="large" icon={<img srcSet={avatar_url} alt={username} />} />}
           title={location}
           description={caption}
           style={{ marginBottom: "0.5em" }}

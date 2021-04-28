@@ -2,8 +2,9 @@ import { Button, Form, Input, Modal, Upload, notification } from "antd";
 import { FrownOutlined, PlusOutlined } from "@ant-design/icons";
 import React, { useContext, useState } from "react";
 
-import Axios from "axios";
 import { MyStoreContext } from "myStore";
+// import Axios from "axios";
+import { axiosInstance } from "api";
 import { getBase64FromFile } from "utils/base64";
 import { parseErrorMessage } from "utils/forms";
 import { useHistory } from "react-router";
@@ -48,7 +49,7 @@ export default function App() {
       Authorization: `JWT ${jwtToken}`,
     };
     try {
-      const response = await Axios.post("http://localhost:8000/instagram/api/posts/", formData, { headers });
+      const response = await axiosInstance.post("/instagram/api/posts/", formData, { headers });
       console.log("success response", response);
       history.push("/");
     } catch (error) {

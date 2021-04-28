@@ -1,11 +1,12 @@
 import { Avatar, Button, Input, Tooltip } from "antd";
 import React, { useContext, useState } from "react";
+import { axiosInstance, useAxios } from "api";
 
-import Axios from "axios";
+// import Axios from "axios";
+// import useAxios from "axios-hooks";
 import Comment from "components/Comment";
 import { MyStoreContext } from "myStore";
 import moment from "moment";
-import useAxios from "axios-hooks";
 
 export default function CommentList({ post }) {
   const {
@@ -15,15 +16,16 @@ export default function CommentList({ post }) {
   const headers = { Authorization: `JWT ${jwtToken}` };
 
   const [{ data, loading, error }, refetch] = useAxios({
-    url: `http://localhost:8000/instagram/api/posts/${post.id}/comments/`,
+    url: `/instagram/api/posts/${post.id}/comments/`,
     headers,
   });
 
   const handleCommentSave = async () => {
     console.group("handleCommentSave");
-    const apiUrl = `http://localhost:8000/instagram/api/posts/${post.id}/comments/`;
+    const apiUrl = `/instagram/api/posts/${post.id}/comments/`;
+
     try {
-      const response = await Axios.post(apiUrl, { message: commentContent }, { headers });
+      const response = await axiosInstance.post(apiUrl, { message: commentContent }, { headers });
       console.log(response);
       refetch();
       setCommentContent("");

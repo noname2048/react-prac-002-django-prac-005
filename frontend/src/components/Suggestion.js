@@ -1,6 +1,8 @@
-import React from "react";
-import { Avatar, Button } from "antd";
 import "components/Suggestion.scss";
+
+import { Avatar, Button } from "antd";
+
+import React from "react";
 
 export default function Suggestion({ suggestionUser, onFollowUser }) {
   const { username, name, avatar_url, is_follow } = suggestionUser;
@@ -8,7 +10,7 @@ export default function Suggestion({ suggestionUser, onFollowUser }) {
   return (
     <div className="suggestion">
       <div className="avatar">
-        <Avatar size="small" icon={<img srcSet={"http://localhost:8000" + avatar_url} alt={username} />} />
+        <Avatar size="small" icon={<img srcSet={avatar_url} alt={username} />} />
 
         {/* <UserOutlined /> */}
       </div>

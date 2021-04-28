@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { axiosInstance, useAxios } from "api";
 
 import { Alert } from "antd";
-import Axios from "axios";
+// import Axios from "axios";
 import { MyStoreContext } from "myStore";
 import Post from "components/Post";
-import useAxios from "axios-hooks";
 
-const apiUrl = "http://localhost:8000/instagram/api/posts/";
+// import useAxios from "axios-hooks";
 
 function PostList() {
   const { state } = useContext(MyStoreContext);
@@ -14,7 +14,7 @@ function PostList() {
 
   const headers = { Authorization: `JWT ${jwtToken}` };
   const [{ data, loading, error }, refetch] = useAxios({
-    url: "http://localhost:8000/instagram/api/posts/",
+    url: "/instagram/api/posts/",
     headers,
   });
 
@@ -25,11 +25,11 @@ function PostList() {
   }, [data]);
 
   const handleLike = async ({ post, isLike }) => {
-    const apiUrl = `http://localhost:8000/instagram/api/posts/${post.id}/like/`;
+    const apiUrl = `/instagram/api/posts/${post.id}/like/`;
     const method = isLike ? "POST" : "DELETE";
 
     try {
-      const response = await Axios({
+      const response = await axiosInstance({
         url: apiUrl,
         method,
         headers,

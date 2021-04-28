@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Form, Input, Button, notification } from "antd";
-import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
 import { FrownOutlined, SmileOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+
+import { axiosInstance } from "api";
+// import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Signup() {
   const history = useHistory();
@@ -16,10 +18,7 @@ export default function Signup() {
 
       const data = { username, password };
       try {
-        const response = await Axios.post(
-          "http://localhost:8000/accounts/signup/",
-          data
-        );
+        const response = await axiosInstance.post("/accounts/signup/", data);
 
         notification.open({
           message: "회원가입 성공",
@@ -39,17 +38,14 @@ export default function Signup() {
           const { data: fieldsErrorMessages } = error.response;
           // fieldsErrorMessages => {username: ["n1", "n2"], password: []}
           setFieldErrors(
-            Object.entries(fieldsErrorMessages).reduce(
-              (acc, [fieldName, errors]) => {
-                // errors: ["m1", "m2"].jsoin("")
-                acc[fieldName] = {
-                  validateStatus: "error",
-                  help: errors.join(" "),
-                };
-                return acc;
-              },
-              {}
-            )
+            Object.entries(fieldsErrorMessages).reduce((acc, [fieldName, errors]) => {
+              // errors: ["m1", "m2"].jsoin("")
+              acc[fieldName] = {
+                validateStatus: "error",
+                help: errors.join(" "),
+              };
+              return acc;
+            }, {})
           );
         }
       }

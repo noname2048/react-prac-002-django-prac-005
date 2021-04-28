@@ -5,7 +5,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { setToken, useAppContext } from "store";
 import { useHistory, useLocation } from "react-router-dom";
 
-import Axios from "axios";
+import { axiosInstance } from "api";
+// import Axios from "axios";
 import { parseErrorMessage } from "utils/forms";
 import useLocalStorage from "utils/useLocalStorage";
 
@@ -36,7 +37,7 @@ export default function Login() {
       const data = { username, password };
       try {
         console.log("단계 A");
-        const response = await Axios.post("http://localhost:8000/accounts/token/", data);
+        const response = await axiosInstance.post("/accounts/token/", data);
 
         console.log("단계 B");
         const {

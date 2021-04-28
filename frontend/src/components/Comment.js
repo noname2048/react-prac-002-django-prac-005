@@ -14,7 +14,7 @@ export default function Comment({ comment }) {
     <AntdComment
       author={username}
       // FIXME: avatar_url 에 host 지정
-      avatar={<Avatar src={"http://localhost:8000" + avatar_url} alt={username} size="small" />}
+      avatar={<Avatar src={avatar_url} alt={username} size="small" />}
       content={message}
       datetime={
         <Tooltip title={moment().format("YYYY-MM-DD HH:SS")}>
