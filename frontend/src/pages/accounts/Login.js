@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Form, Input, Button, notification, Card } from "antd";
-import Axios from "axios";
-import { useHistory, useLocation } from "react-router-dom";
+import { Button, Card, Form, Input, notification } from "antd";
+import { DELETE_TOKEN, MyStoreContext, SET_TOKEN } from "myStore";
 import { FrownOutlined, SmileOutlined } from "@ant-design/icons";
+import React, { useContext, useEffect, useState } from "react";
+import { setToken, useAppContext } from "store";
+import { useHistory, useLocation } from "react-router-dom";
+
+import Axios from "axios";
+import { parseErrorMessage } from "utils/forms";
 import useLocalStorage from "utils/useLocalStorage";
-import { useAppContext, setToken } from "store";
-import { MyStoreContext, SET_TOKEN, DELETE_TOKEN } from "myStore";
 
 export default function Login() {
   const { dispatch } = useAppContext();
@@ -34,10 +36,7 @@ export default function Login() {
       const data = { username, password };
       try {
         console.log("단계 A");
-        const response = await Axios.post(
-          "http://localhost:8000/accounts/token/",
-          data
-        );
+        const response = await Axios.post("http://localhost:8000/accounts/token/", data);
 
         console.log("단계 B");
         const {
@@ -72,19 +71,7 @@ export default function Login() {
 
           const { data: fieldsErrorMessages } = error.response;
           // fieldsErrorMessages => {username: ["n1", "n2"], password: []}
-          setFieldErrors(
-            Object.entries(fieldsErrorMessages).reduce(
-              (acc, [fieldName, errors]) => {
-                // errors: ["m1", "m2"].jsoin("")
-                acc[fieldName] = {
-                  validateStatus: "error",
-                  help: errors.join(" "),
-                };
-                return acc;
-              },
-              {}
-            )
-          );
+          setFieldErrors(parseErrorMessage(fieldsErrorMessages));
         }
       }
     }
