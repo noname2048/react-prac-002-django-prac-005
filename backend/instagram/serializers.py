@@ -1,3 +1,4 @@
+import re
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
@@ -15,6 +16,16 @@ class SubUserSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     following_set = SubUserSerializer(many=True, read_only=True)
+    avatar_url = serializers.SerializerMethodField("avatar_url_field")
+
+    def avatar_url_field(self, user):
+        if re.match(r"^https?://", user.avatar_url):
+            return user.avatar_url
+
+        if "request" in self.context:
+            scheme = self.context["request"].scheme
+            host = self.context["request"].get_host()
+            return scheme + "://" + host + user.avatar_url
 
     class Meta:
         model = User
