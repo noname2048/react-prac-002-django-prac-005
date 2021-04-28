@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from instagram.models import Post
+from instagram.models import Post, Comment
 
 User = get_user_model()
 
@@ -53,3 +53,11 @@ class PostSerializer(serializers.ModelSerializer):
             "tag_set",
             "is_like",
         ]
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ["id", "user", "message", "created_at"]
