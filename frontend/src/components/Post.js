@@ -1,9 +1,10 @@
-import React from "react";
 import { Avatar, Card } from "antd";
-import { HeartOutlined, HeartFilled, UserOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined, HeartTwoTone, UserOutlined } from "@ant-design/icons";
 
-function Post({ post }) {
-  const { user, caption, location, photo, tag_set, like_user_set } = post;
+import React from "react";
+
+function Post({ post, handleLike }) {
+  const { user, caption, location, photo, tag_set, is_like } = post;
   const { username, name, avatar_url } = user;
 
   return (
@@ -12,7 +13,22 @@ function Post({ post }) {
         hoverable
         cover={<img src={photo} alt={caption} />}
         // FIXME: host 지정을 변수명, 로직으로 처리
-        actions={[<HeartOutlined />, <HeartFilled />]}
+        actions={[
+          is_like ? (
+            <HeartTwoTone
+              twoToneColor="#eb2f96"
+              onClick={() => {
+                handleLike({ post, isLike: false });
+              }}
+            />
+          ) : (
+            <HeartOutlined
+              onClick={() => {
+                handleLike({ post, isLike: true });
+              }}
+            />
+          ),
+        ]}
       >
         <Card.Meta
           avatar={<Avatar size="large" icon={<img srcSet={"http://localhost:8000" + avatar_url} alt={username} />} />}
