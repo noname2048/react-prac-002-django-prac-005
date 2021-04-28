@@ -5,7 +5,7 @@ import StoryList from "components/StoryList";
 import SuggestionList from "components/SuggestionList";
 import LogoImage from "assets/instagram.png";
 
-function AppLayout({ children }) {
+function AppLayout({ children, sidebar }) {
   return (
     <div className="app">
       <div className="header">
@@ -27,10 +27,7 @@ function AppLayout({ children }) {
         </div>
       </div>
       <div className="contents">{children}</div>
-      <div className="sidebar">
-        <StoryList style={{ marginBottom: "1rem" }} />
-        <SuggestionList />
-      </div>
+      <div className="sidebar">{sidebar}</div>
       <div className="footer">&copy; 2020. noname2048.</div>
     </div>
   );
