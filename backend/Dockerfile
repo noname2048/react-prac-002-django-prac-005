@@ -4,8 +4,8 @@ RUN apt-get update && \
 apt-get install -y python3-pip python3-dev && \
 apt-get clean
 
-WORKDIR /code/
-ADD ./backend /code
+WORKDIR /djangoproject
+ADD . /djangoproject
 RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
