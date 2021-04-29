@@ -78,6 +78,9 @@ cryptography==3.4.7; python_version >= "3.6" \
 django-cors-headers==3.7.0; python_version >= "3.6" \
     --hash=sha256:96069c4aaacace786a34ee7894ff680780ec2644e4268b31181044410fecd12e \
     --hash=sha256:1ac2b1213de75a251e2ba04448da15f99bcfcbe164288ae6b5ff929dc49b372f
+django-debug-toolbar==3.2; python_version >= "3.6" \
+    --hash=sha256:84e2607d900dbd571df0a2acf380b47c088efb787dce9805aefeb407341961d2 \
+    --hash=sha256:9e5a25d0c965f7e686f6a8ba23613ca9ca30184daa26487706d4829f5cfb697a
 django-pydenticon==0.2 \
     --hash=sha256:52f03d960947bffd132841c0ee9767e50a9776402c1c6f9487ec46a137273bf5
 django-storages==1.11.1; python_version >= "3.5" \
