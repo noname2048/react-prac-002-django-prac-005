@@ -194,4 +194,4 @@ LOGGING = {
     },
 }
 
-CORS_ORIGIN_WHITELIST = os.environ.get("CORS_ORIGIN_WHITELIST", "").split(",")
+CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ORIGIN_WHITELIST", "").split(",")
