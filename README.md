@@ -1,5 +1,5 @@
 # django-prac-005 + react-prac-002
-
+21.4.19 ~ 5.1 개발
 ## 활용스택
 
 1. REACT
@@ -21,6 +21,10 @@
 ## 구현대상
 
 인스타그램 클론 :smile:
+![](presentation/스크린샷,%202021-05-01%2022-20-57.png)
+![](presentation/스크린샷,%202021-05-01%2022-21-16.png)
+![](presentation/스크린샷,%202021-05-01%2022-21-32.png)
+![](presentation/스크린샷,%202021-05-01%2022-21-54.png)
 
 ### 구현 페이지
 1. 메인페이지
@@ -46,7 +50,8 @@
 
 1. DRF JWT 인증
 2. DRF POST VIEWSETS
-3. MODEL FILTERING
+3. SERIALIZERS
+4. MODEL FILTERING
 
 
 ## 기존방식과의 차이
